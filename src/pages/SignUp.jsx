@@ -2,8 +2,32 @@ import React from 'react';
 import user_icon from '../assets/person.png'
 import email_icon from '../assets/email.png';
 import password_icon from '../assets/password.png';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
+
+    const [name, setName] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const navigate = useNavigate();
+
+    const handleSignUp = () => {
+        if(!name || !email || !password){
+            alert("Please fill all details");
+            return;
+        }
+
+        const newUser = {name, email, password};
+        localStorage.setItem('user', JSON.stringify(newUser));
+        alert("Signup successful!");
+        navigate('/login');
+    }
+
+    
+
+
   return (
     <div className='flex flex-col mx-auto mt-[200px] w-[600px]  bg-white pb-7 rounded-lg shadow-lg'>
         <div className='flex flex-col items-center gap-[9px] w-full mt-7'>
