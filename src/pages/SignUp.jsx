@@ -38,22 +38,44 @@ const SignUp = () => {
         <div className='mt-[55px] flex flex-col gap-10'>
             <div className="flex items-center mx-auto w-[480px] h-[80px] bg-[#eaeaea] rounded-md">
                 <img src={user_icon} alt="" className='mx-[30px]'/>
-                <input type="text" placeholder='Name' className='h-[50px] w-[400px] bg-transparent border-none outline-none text-[#797979] text-[19px]'/>
+                <input 
+                type="text" 
+                placeholder='Name' 
+                className='h-[50px] w-[400px] bg-transparent border-none outline-none text-[#797979] text-[19px]'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                />
             </div>
             <div className='flex items-center mx-auto w-[480px] h-[80px] bg-[#eaeaea] rounded-md'>
                 <img src={email_icon} alt="" className='mx-[30px]'/>
-                <input type="email" placeholder='Email' className='h-[50px] w-[400px] bg-transparent border-none outline-none text-[#797979] text-[19px]' />
+                <input 
+                type="email" 
+                placeholder='Email' 
+                className='h-[50px] w-[400px] bg-transparent border-none outline-none text-[#797979] text-[19px]'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                />
             </div>
             <div className='flex items-center mx-auto w-[480px] h-[80px] bg-[#eaeaea] rounded-md'>
                 <img src={password_icon} alt="" className='mx-[30px]'/>
-                <input type="password" placeholder='Password'  className="h-[50px] w-[400px] bg-transparent border-none outline-none text-[#797979] text-[19px]"  />
+                <input 
+                type="password" 
+                placeholder='Password'  
+                className="h-[50px] w-[400px] bg-transparent border-none outline-none text-[#797979] text-[19px]"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                />
             </div>
         </div>
 
         <div className='flex gap-[30px] mx-auto mt-[60px]'>
-            <div className='flex justify-center items-center w-[220px] h-[59px] text-white bg-[#4c00b4] rounded-[50px] text-[19px] font-semibold cursor-pointer mb-7'>Sign Up</div>
+            <button 
+            className='flex justify-center items-center w-[220px] h-[59px] text-white bg-[#4c00b4] rounded-[50px] text-[19px] font-semibold cursor-pointer mb-7'
+            onClick={handleSignUp}
+            >
+                Sign Up
+            </button>
         </div>
-        
     </div>
   )
 }
