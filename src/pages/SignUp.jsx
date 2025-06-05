@@ -7,20 +7,38 @@ import { useNavigate } from 'react-router-dom';
 
 const SignUp = () => {
 
-    const [name, setName] = useState('')
+    const [username, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
 
     const navigate = useNavigate();
 
     const handleSignUp = () => {
-        if(!name || !email || !password){
+        if(!username || !email || !password){
             alert("Please fill all details");
             return;
         }
 
-        const newUser = {name, email, password};
-        localStorage.setItem('user', JSON.stringify(newUser));
+        const newUser = {username, email, password};
+
+        const existingUsers = JSON.parse(localStorage.getItem('users')) || [];
+
+        const emailExists = existingUsers.some(user => user.email === email);
+        const usernameExists = existingUsers.some(user => user.username === username);
+
+        if(emailExists){
+            alert("User with this email already exists!");
+            return;
+        }
+        if(usernameExists){
+            alert("User with this username already exists!");
+            return;
+        }
+
+        existingUsers.push(newUser)
+
+
+        localStorage.setItem('users', JSON.stringify(existingUsers));
         alert("Signup successful!");
         navigate('/login');
     }
@@ -42,7 +60,7 @@ const SignUp = () => {
                 type="text" 
                 placeholder='Name' 
                 className='h-[50px] w-[400px] bg-transparent border-none outline-none text-[#797979] text-[19px]'
-                value={name}
+                value={username}
                 onChange={(e) => setName(e.target.value)}
                 />
             </div>
