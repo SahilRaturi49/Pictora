@@ -2,12 +2,15 @@ import React from 'react';
 import { useState } from 'react';
 import email_icon from '../assets/email.png';
 import password_icon from '../assets/password.png';
+import { useNavigate } from 'react-router-dom';
 
 
 const Login = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
 
     const handleLogin = () => {
         if(!email || !password){
@@ -24,7 +27,7 @@ const Login = () => {
         if(user){
             alert("Login successfully!")
             localStorage.setItem('loggedInUser', JSON.stringify(user));
-
+            navigate('/dashboard')
         }else{
             alert("Invalid email or password")
         }
@@ -63,11 +66,10 @@ const Login = () => {
         </div>
 
         <div className='flex gap-[30px] mx-auto mt-[60px]'>
-            {/* <div className='flex justify-center items-center w-[220px] h-[59px] text-white bg-[#4c00b4] rounded-[50px] text-[19px] font-semibold cursor-pointer mb-7'>Login</div> */}
             <button 
             className='flex justify-center items-center w-[220px] h-[59px] text-white bg-[#4c00b4] rounded-[50px] text-[19px] font-semibold cursor-pointer mb-7'
             onClick={handleLogin}
-            ></button>
+            >Login</button>
         </div>
         
     </div>
